@@ -1,0 +1,39 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Django Postgres Tasks</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel">
+        <p class="eyebrow">Django + Postgres</p>
+        <h1>Task Board</h1>
+        <p class="summary">{{ done_tasks }} of {{ total_tasks }} tasks completed.</p>
+
+        <form class="task-form" method="post">
+          {% csrf_token %}
+          {{ form.title }}
+          <button type="submit">Add</button>
+        </form>
+
+        <ul class="task-list">
+          {% for task in tasks %}
+            <li class="task-item{% if task.is_done %} is-done{% endif %}">
+              <span>{{ task.title }}</span>
+              <form method="post" action="{% url 'toggle-task' task.pk %}">
+                {% csrf_token %}
+                <button type="submit">{% if task.is_done %}Undo{% else %}Done{% endif %}</button>
+              </form>
+            </li>
+          {% empty %}
+            <li class="empty-state">No tasks yet. Add the first one above.</li>
+          {% endfor %}
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
