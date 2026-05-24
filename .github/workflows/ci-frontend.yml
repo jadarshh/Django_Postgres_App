@@ -24,8 +24,6 @@ jobs:
 
             - name: Run ESLint
               run: npm run lint
-            - name: Check for type errors with TypeScript
-              run: npm run type-check
             - name: Type check with TypeScript
               run: npx tsc --noEmit
     build:
