@@ -6,3 +6,11 @@ db.sqlite3
 staticfiles/
 .pytest_cache/
 DEVOPS_GUIDE.md
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+frontend/.env*.local
+README_NEXT.md
+TROUBLESHOOTING_NEXT.md
